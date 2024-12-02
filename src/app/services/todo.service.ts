@@ -12,17 +12,18 @@ export interface Todo {
   providedIn: 'root'
 })
 export class TodoService {
-  private readonly apiUrl = 'http://localhost:3000/v1/todos'; // API URL
+  private readonly apiUrl = 'http://localhost:3000/v1/todos'; // API Endpoint
+
   // to hold the current state of the todo list
   private todosSubject = new BehaviorSubject<Todo[]>([]);
-  public todos$ = this.todosSubject.asObservable(); // Expose as Observable for subscribers
+  public todos$ = this.todosSubject.asObservable();
 
   // to hold the most recently added todo
   private addedTodoSubject = new Subject<Todo>();
   public addedTodo$ = this.addedTodoSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.getTodos(true); // Initial load
+    this.getTodos(true);
    }
 
   getTodos(latest: boolean = false): Observable<Todo[]> {
@@ -46,10 +47,10 @@ export class TodoService {
     this.http
     .post<Todo>(this.apiUrl, { title, completed: false }, { headers })
     .subscribe((addedTodo) => {
-      // Update the BehaviorSubject with the new list, add the new todo at the top
       const currentTodos = this.todosSubject.getValue();
-      this.todosSubject.next([addedTodo, ...currentTodos]); // add the new todo at the beginning
-      this.addedTodoSubject.next(addedTodo); // emit the new todo
+      this.todosSubject.next([addedTodo, ...currentTodos]);
+
+      this.addedTodoSubject.next(addedTodo); // the new todo
     });
   }
 

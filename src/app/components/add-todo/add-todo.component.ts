@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-add-todo',
-  imports: [FormsModule, CommonModule],
-  templateUrl: './add-todo.component.html',
-  styleUrl: './add-todo.component.css'
+  imports: [FormsModule],
+  templateUrl: './add-todo.component.html'
 })
 export class AddTodoComponent {
   newTodoTitle: string = '';

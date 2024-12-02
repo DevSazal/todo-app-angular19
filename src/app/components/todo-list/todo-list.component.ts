@@ -23,7 +23,7 @@ export class TodoListComponent implements OnInit {
       this.todos = todos;
     });
 
-    // Subscribe to the addedTodo stream
+    // Subscribe to the newly added todo stream
     this.highlightedTodo();
   }
 
@@ -43,7 +43,7 @@ export class TodoListComponent implements OnInit {
 
   highlightedTodo(): void {
     this.todoService.addedTodo$.subscribe((addedTodo) => {
-      this.highlightedTodoId = addedTodo._id; // Highlight the new todo
+      this.highlightedTodoId = addedTodo._id;
       setTimeout(() => (this.highlightedTodoId = null), 5000);
     });
   }
