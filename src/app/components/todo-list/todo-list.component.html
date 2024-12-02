@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h5>Todo List</h5>
+    <ul class="list-group">
+      <li
+        *ngFor="let todo of todos"
+        class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{ 'new-todo': highlightedTodoId === todo._id }"
+      >
+        <div>
+          <input
+            type="checkbox"
+            [checked]="todo.completed"
+            (change)="toggleCompletion(todo)"
+          />
+          <span [class.text-decoration-line-through]="todo.completed" (click)="toggleCompletion(todo)">
+            {{ todo.title }}
+          </span>
+        </div>
+        <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo._id)">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+

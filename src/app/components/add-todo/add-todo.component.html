@@ -1,0 +1,13 @@
+<div class="container mt-4">
+    <h6>Add New Todo</h6>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="What's your plan?"
+        [(ngModel)]="newTodoTitle"
+      />
+      <button class="btn btn-primary" (click)="addTodo()"> Save </button>
+    </div>
+  </div>
+
