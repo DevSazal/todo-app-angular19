@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Todo {
   _id: string;
@@ -12,7 +13,7 @@ export interface Todo {
   providedIn: 'root'
 })
 export class TodoService {
-  private readonly apiUrl = 'http://localhost:3000/v1/todos'; // API Endpoint
+  private readonly apiUrl = `${environment.backendURL}/v1/todos`; // API Endpoint
 
   // to hold the current state of the todo list
   private todosSubject = new BehaviorSubject<Todo[]>([]);
